@@ -37,13 +37,13 @@
 
             <div class="historyArea">
             	<p class="history">
-                    <label>热门搜索�?</label>
+                    <label>热门搜索：</label>
                     {% for search_word in topn_search %}
                         <a href='/search?q={{ search_word }}&s_type=article'>{{ search_word }}</a>
                     {% endfor %}
                 </p>
                 <p class="history mysearch">
-                	<label>我的搜索�?</label>
+                	<label>我的搜索：</label>
                     <span class="all-search">
                         <a href="javascript:;"></a>
                         <a href="javascript:;"></a>
@@ -58,69 +58,69 @@
 
     <div class="foot">
     	<div class="wrap">
-            <div class="copyright">Copyright &copy;search.mtianyan.cn 版权�?�?  E-mail:search@mtianyan.cn</div>
+            <div class="copyright">Copyright &copy;search.mtianyan.cn 版权所有  E-mail:search@mtianyan.cn</div>
         </div>
     </div>
 </div>
 </body>
 <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/global.js' %}"></script>
-<script type="text/javascript">
-    var suggest_url = "{% url 'suggest' %}"
-    var search_url = "{% url 'search' %}"
-
-
-	$('.searchList').on('click', '.searchItem', function(){
-		$('.searchList .searchItem').removeClass('current');
-		$(this).addClass('current');
-	});
-
-    function removeByValue(arr, val) {
-      for(var i=0; i<arr.length; i++) {
-        if(arr[i] == val) {
-          arr.splice(i, 1);
-          break;
-        }
-      }
-    }
-    // 搜索建议
-    $(function(){
-        $('.searchInput').bind(' input propertychange ',function(){
-            var searchText = $(this).val();
-            var tmpHtml = ""
-            $.ajax({
-                cache: false,
-                type: 'get',
-                dataType:'json',
-                url:suggest_url+"?s="+searchText+"&s_type="+$(".searchItem.current").attr('data-type'),
-                async: true,
-                success: function(data) {
-                    for (var i=0;i<data.length;i++){
-                        tmpHtml += '<li><a href="'+search_url+'?q='+data[i].slice(0,35)+'&s_type='+$(".searchItem.current").attr('data-type')+'">'+data[i]+'</a></li>'
-                    }
-                    $(".dataList").html("")
-                    $(".dataList").append(tmpHtml);
-                    if (data.length == 0){
-                        $('.dataList').hide()
-                    }else {
-                        $('.dataList').show()
-                    }
-                }
-            });
-        } );
-    })
-
-    hideElement($('.dataList'), $('.searchInput'));
-
-</script>
+{#<script type="text/javascript">#}
+{#    var suggest_url = "{% url 'suggest' %}"#}
+{#    var search_url = "{% url 'search' %}"#}
+{##}
+{##}
+{#	$('.searchList').on('click', '.searchItem', function(){#}
+{#		$('.searchList .searchItem').removeClass('current');#}
+{#		$(this).addClass('current');#}
+{#	});#}
+{##}
+{#    function removeByValue(arr, val) {#}
+{#      for(var i=0; i<arr.length; i++) {#}
+{#        if(arr[i] == val) {#}
+{#          arr.splice(i, 1);#}
+{#          break;#}
+{#        }#}
+{#      }#}
+{#    }#}
+{#    // 搜索建议#}
+{#    $(function(){#}
+{#        $('.searchInput').bind(' input propertychange ',function(){#}
+{#            var searchText = $(this).val();#}
+{#            var tmpHtml = ""#}
+{#            $.ajax({#}
+{#                cache: false,#}
+{#                type: 'get',#}
+{#                dataType:'json',#}
+{#                url:suggest_url+"?s="+searchText+"&s_type="+$(".searchItem.current").attr('data-type'),#}
+{#                async: true,#}
+{#                success: function(data) {#}
+{#                    for (var i=0;i<data.length;i++){#}
+{#                        tmpHtml += '<li><a href="'+search_url+'?q='+data[i].slice(0,35)+'&s_type='+$(".searchItem.current").attr('data-type')+'">'+data[i]+'</a></li>'#}
+{#                    }#}
+{#                    $(".dataList").html("")#}
+{#                    $(".dataList").append(tmpHtml);#}
+{#                    if (data.length == 0){#}
+{#                        $('.dataList').hide()#}
+{#                    }else {#}
+{#                        $('.dataList').show()#}
+{#                    }#}
+{#                }#}
+{#            });#}
+{#        } );#}
+{#    })#}
+{##}
+{#    hideElement($('.dataList'), $('.searchInput'));#}
+{##}
+{#</script>#}
 <script>
     var searchArr;
-    //定义�?个search的，判断浏览器有无数据存储（搜索历史�?
+    //定义一个search的，判断浏览器有无数据存储（搜索历史）
     if(localStorage.search){
-    //如果有，转换�? 数组的形式存放到searchArr的数组里（localStorage以字符串的形式存储，�?以要把它转换成数组的形式�?
+    //如果有，转换成 数组的形式存放到searchArr的数组里（localStorage以字符串的形式存储，所以要把它转换成数组的形式）
         searchArr= localStorage.search.split(",")
     }else{
-    //如果没有，则定义searchArr为一个空的数�?
+    //如果没有，则定义searchArr为一个空的数组
         searchArr = [];
     }
     //把存储的数据显示出来作为搜索历史
