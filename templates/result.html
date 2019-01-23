@@ -89,8 +89,7 @@
                                     <span class="value">{% if s_type == "article" %}
                                      {{ hits.create_date }}
                                     {% else %}
-                                        {{ hits.create_date|slice:":-9" }}
-
+                                        {{ hits.create_date }}
                                     {% endif %}
                                     </span>
                                 </span>
@@ -133,7 +132,8 @@
 <script type="text/javascript" src="{% static 'js/global.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/pagination.js' %}"></script>
 <script type="text/javascript">
-    var search_url = "{% url 'search' %}"
+{#    var search_url = "{% url 'search' %}"#}
+    var search_url  = "search/"
 
 	$('.searchList').on('click', '.searchItem', function(){
 		$('.searchList .searchItem').removeClass('current');
@@ -234,12 +234,13 @@
     }
     //把存储的数据显示出来作为搜索历史
     MapSearchArr();
-
+    var search_url = "{% url 'search' %}"
     function add_search(){
         var val = $(".searchInput").val();
         if (val.length>=2){
+            console.log("qwe")
             //点击搜索按钮时，去重
-            KillRepeat(val);
+{#            KillRepeat(val);#}
             //去重后把数组存储到浏览器localStorage
             localStorage.search = searchArr;
             //然后再把搜索内容显示出来
