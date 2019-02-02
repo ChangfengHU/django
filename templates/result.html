@@ -78,7 +78,10 @@
                                     <span class="value">{{ hits.score }}</span>
                                 </span>
                             </div>
-                            <div class="itemBody">{% autoescape off %}{{ hits.content }}{% endautoescape %}</div>
+                            <div class="itemBody">
+                            {{ hits.front_image_url }}
+                                 <span style="float:left"> <img  style="height:60px; width: auto" src={{ hits.front_image_url }} alt=""></span>
+                                 <span>     {% autoescape off %}{{ hits.content }}{% endautoescape %}</div></span>
                             <div class="itemFoot">
                                 <span class="info">
                                     <label>网站：</label>

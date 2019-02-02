@@ -37,13 +37,13 @@
 
             <div class="historyArea">
             	<p class="history">
-                    <label>热门搜索：</label>
+                    <label>热门搜索：</label><br>
                     {% for search_word in topn_search %}
-                        <a href='/search?q={{ search_word }}&s_type=article'>{{ search_word }}</a>
+                        <a href='/search?q={{ search_word }}&s_type=article'>{{ search_word }}</a><br>
                     {% endfor %}
                 </p>
                 <p class="history mysearch">
-                	<label>我的搜索：</label>
+                	<label>我的搜索：</label><br>
                     <span class="all-search">
                         <a href="javascript:;"></a>
                         <a href="javascript:;"></a>
@@ -51,6 +51,20 @@
                         <a href="javascript:;"></a>
                     </span>
 
+                </p>
+                <p class="history ">
+                	<label>内容推荐：</label><br>
+                   {% for recommend_word in recommend_list %}
+                        <a href='/search?q={{ recommend_word }}&s_type=article'>{{ recommend_word }}</a>
+                       <br>
+                    {% endfor %}
+                </p>
+                <p class="history ">
+                	<label>协同推荐：</label><br>
+                   {% for joinRecommend_word in JoinRecommend_list %}
+                        <a href='/search?q={{ joinRecommend_word }}&s_type=article'>{{ joinRecommend_word }}</a>
+                       <br>
+                    {% endfor %}
                 </p>
             </div>
         </div><!-- End of main -->

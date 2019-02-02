@@ -25,7 +25,7 @@ SECRET_KEY = 'qv%^#!^8rc@%bd&ab-b^2k1c=l7#aj!ahzvpkl@a2+o-$uphw8'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*","www.changfeng.online"]
 
 
 # Application definition
